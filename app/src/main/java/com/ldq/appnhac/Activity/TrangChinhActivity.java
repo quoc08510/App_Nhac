@@ -3,6 +3,7 @@ package com.ldq.appnhac.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -10,17 +11,21 @@ import com.ldq.appnhac.Adapter.MainViewPagerAdapter;
 import com.ldq.appnhac.Fragment.Fragment_Ho_So;
 import com.ldq.appnhac.Fragment.Fragment_Tim_Kiem;
 import com.ldq.appnhac.Fragment.Fragment_Trang_Chu;
+import com.ldq.appnhac.Model.TaiKhoan;
 import com.ldq.appnhac.R;
 
 public class TrangChinhActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-
+    public static TaiKhoan taikhoan = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trang_chinh);
-
+        Intent intent = getIntent();
+        if (intent.hasExtra("nametaikhoan")) {
+            taikhoan = (TaiKhoan) intent.getSerializableExtra("nametaikhoan");
+        }
         anhxa();
         init();
     }
