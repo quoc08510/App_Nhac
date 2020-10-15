@@ -4,6 +4,7 @@ import com.ldq.appnhac.Model.Album;
 import com.ldq.appnhac.Model.BaiHat;
 import com.ldq.appnhac.Model.ChuDeTheLoai;
 import com.ldq.appnhac.Model.Chude;
+import com.ldq.appnhac.Model.HoSo;
 import com.ldq.appnhac.Model.Playlist;
 import com.ldq.appnhac.Model.Quangcao;
 import com.ldq.appnhac.Model.TaiKhoan;
@@ -81,4 +82,12 @@ public interface Dataserver {
     @FormUrlEncoded
     @POST("dangky.php")
     Call<String> getDangKyTaiKhoan(@Field("tentaikhoan")String tentaikhoan,@Field("matkhau")String matkhau);
+
+    @FormUrlEncoded
+    @POST("layhoso.php")
+    Call<HoSo> getHoSo(@Field("idtaikhoan") String idtaikhoan);
+
+    @FormUrlEncoded
+    @POST("dangkyhoso.php")
+    Call<String> getDangKyHoSo(@Field("idtaikhoan")String idtaikhoan);
 }
