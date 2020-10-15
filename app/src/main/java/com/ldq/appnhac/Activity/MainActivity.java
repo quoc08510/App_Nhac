@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                     editer.commit();
                                 }
                                 Intent intent = new Intent(MainActivity.this, TrangChinhActivity.class);
+                                intent.putExtra("nametaikhoan",taiKhoan);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(MainActivity.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
