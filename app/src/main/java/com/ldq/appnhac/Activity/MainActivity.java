@@ -45,8 +45,25 @@ public class MainActivity extends AppCompatActivity {
             edtmatkhau.setText(intent1.getStringArrayListExtra("taikhoanmatkhau").get(1));
         }
         if(cbghinho.isChecked()){
-            Intent intent = new Intent(MainActivity.this, TrangChinhActivity.class);
-            startActivity(intent);
+            final Intent intent = new Intent(MainActivity.this, TrangChinhActivity.class);
+            Dataserver dataserver = APIServer.getServer();
+            Call<List<TaiKhoan>> callback = dataserver.getTaiKhoan(edttentaikhoan.getText().toString());
+            callback.enqueue(new Callback<List<TaiKhoan>>() {
+                @Override
+                public void onResponse(Call<List<TaiKhoan>> call, Response<List<TaiKhoan>> response) {
+                    ArrayList<TaiKhoan> taiKhoans = (ArrayList<TaiKhoan>) response.body();
+                    if (taiKhoans.size()>0){
+                    intent.putExtra("nametaikhoan",taiKhoans.get(0));
+                    startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<TaiKhoan>> call, Throwable t) {
+
+                }
+            });
+
         }
 
 
@@ -78,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                                     editer.commit();
                                 }
                                 Intent intent = new Intent(MainActivity.this, TrangChinhActivity.class);
-                                intent.putExtra("nametaikhoan",taiKhoan);
+                                intent.putExtra("nametaikhoan",taiKhoan.get(0));
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(MainActivity.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
