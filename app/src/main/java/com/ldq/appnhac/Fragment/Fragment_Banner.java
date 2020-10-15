@@ -75,10 +75,10 @@ public class Fragment_Banner extends Fragment {
                             currentItem=0;
                         }
                         viewPager.setCurrentItem(currentItem,true);
-                        handler.postDelayed(runnable,4500);
+                        handler.postDelayed(runnable,5500);
                     }
                 };
-                handler.postDelayed(runnable,4500);
+                handler.postDelayed(runnable,5500);
             }
 
             @Override
